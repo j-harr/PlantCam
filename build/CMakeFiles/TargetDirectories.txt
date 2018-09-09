@@ -1,3 +1,3 @@
-/home/pi/plantCam/build/CMakeFiles/rebuild_cache.dir
-/home/pi/plantCam/build/CMakeFiles/edit_cache.dir
-/home/pi/plantCam/build/CMakeFiles/PlantCam.dir
+/home/pi/PlantCam/build/CMakeFiles/rebuild_cache.dir
+/home/pi/PlantCam/build/CMakeFiles/edit_cache.dir
+/home/pi/PlantCam/build/CMakeFiles/PlantCam.dir

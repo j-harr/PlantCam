@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/plantCam/src/main.cpp
+/home/pi/PlantCam/src/main.cpp
 opencv2/objdetect/objdetect.hpp
 -
 opencv2/highgui/highgui.hpp
