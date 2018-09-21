@@ -4,23 +4,36 @@
 
 #include <iostream>
 #include <stdio.h>
-
-using namespace std;
-using namespace cv;
+#include <ctime>
 
 int main(int argc, char* argv[])
 {
-	string fileName;
+	//Get filename based on current time
+	time_t current_time;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time (&current_time);
+	timeinfo = localtime(&current_time);
+
+	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+
+
+	std::string fileName(buffer);
 	if(argc == 2){
 		fileName = argv[1];
 	} else{
-		fileName = "default.jpg";
+		fileName += ".jpg";
 	}
 
-VideoCapture cap(0);
+	cv::VideoCapture cap(0);
 
 // Get the frame
-Mat save_img; cap >> save_img;
+	cv::Mat save_img;
+	cv::waitKey(30);
+	cap >> save_img;
+
+
 
 if(save_img.empty())
 {
@@ -28,5 +41,6 @@ if(save_img.empty())
 }
 // Save the frame into a file
 imwrite(fileName, save_img);
+std::cout << "Saved image " << fileName << " !" << std::endl;
 }
 

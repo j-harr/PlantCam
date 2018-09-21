@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/PlantCam/src/main.cpp" "/home/pi/PlantCam/build/CMakeFiles/PlantCam.dir/src/main.cpp.o"
+  "/home/jacob/PlantCam/src/main.cpp" "/home/jacob/PlantCam/build/CMakeFiles/PlantCam.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
