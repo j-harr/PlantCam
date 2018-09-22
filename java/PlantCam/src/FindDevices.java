@@ -11,6 +11,7 @@ public class FindDevices implements Callable<Object> {
 	private int msg_length;
 	
 	public FindDevices(int port, int msg_length) {
+		System.out.println("Find Devices COnstructor");
 		portNum = port;
 		if(msg_length <= 0)
 			this.msg_length = 100;
@@ -27,7 +28,9 @@ public class FindDevices implements Callable<Object> {
 		devices = new ArrayList<String>();
 		s = new DatagramSocket(portNum);
 		int repeats = 0;
-		while(repeats < 2) {
+		int attempts = 0;
+		while(repeats < 2 && attempts++ <= 5) {
+			System.out.println("Find Devices Loop on port" + portNum);
 			byte[] recvBuffer = new byte[msg_length];
 			DatagramPacket packet = new DatagramPacket(recvBuffer, msg_length);
 			s.receive(packet);

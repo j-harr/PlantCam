@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class Client {
 	public static void main(String[] args) throws IOException {
 		System.out.println(args.length);
-		if(args.length == 1)
-			scanNetwork(args[0]);
 		Scanner scanny = new Scanner(System.in);
 		System.out.print("Enter address you would like to connect to: ");
 		String serverAddress = scanny.nextLine();
