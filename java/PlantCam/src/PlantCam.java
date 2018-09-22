@@ -6,7 +6,7 @@
  */
 
 public class PlantCam {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		if(args.length == 0) {
 			System.out.println("Please use the format : "
 					+ "java PlantCam -master  OR  java PlantCam -node");
