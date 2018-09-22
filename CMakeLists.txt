@@ -5,6 +5,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+set( OpenCV_FOUND 1 )
 find_package( OpenCV REQUIRED )
 if( OpenCV_FOUND )
 list( APPEND ThirdPart_LIBS ${OpenCV_LIBS} )
