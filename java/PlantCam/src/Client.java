@@ -1,38 +1,45 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
 
 public class Client {
 	public static void main(String[] args) throws IOException {
-		scanNetwork("192.168.2");
+		System.out.println(args.length);
+		if(args.length == 1)
+			scanNetwork(args[0]);
 		Scanner scanny = new Scanner(System.in);
 		System.out.print("Enter address you would like to connect to: ");
 		String serverAddress = scanny.nextLine();
-		Socket s = new Socket(serverAddress, 9090);
+		Socket s = new Socket(serverAddress, 9060);
 		BufferedReader input = 
 				new BufferedReader(new InputStreamReader(s.getInputStream()));
 		String answer = input.readLine();
 		System.out.println(answer);
 		scanny.close();
+		s.close();
 		System.exit(0);
 	}
 
-	public static void scanNetwork(String baseNetwork) throws IOException{
-		int timeout=10;
-		for(int i = 1; i < 20; i++){
+	public static List<Device> scanNetwork() throws IOException{
+		String thisAddress = InetAddress.getLocalHost().getHostAddress();
+		String baseNetwork = thisAddress.substring(0, thisAddress.lastIndexOf("."));
+		List<Device> devices = new ArrayList<Device>();
+		System.out.println("Scanning network with base: " + baseNetwork);
+		int timeout=1;
+		for(int i = 1; i < 255; i++){
 			String host = baseNetwork + "." + i;
 			if(InetAddress.getByName(host).isReachable(timeout)){
-				System.out.println("Found device:" + host);
+				devices.add(new Device(host));
+				System.out.println(host);
 			}
-			System.out.print("\rScanning network: ["+ (i * 100 / 20) + "%]");
 		}
-		System.out.println();
+		if(devices.isEmpty())
+			System.out.println("No devices found");
+		return devices;
 	}
 }
