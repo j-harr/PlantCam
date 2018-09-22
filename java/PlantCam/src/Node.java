@@ -1,12 +1,17 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 public class Node {
-	public static void execute() {
+	public static void execute() throws Exception {
 		System.out.println("Executing as NODE");
+		Broadcast bcaster = new Broadcast(9020);
+		bcaster.call();
 		try {
 			ServerSocket listener = new ServerSocket(9060);
 			while(true) {

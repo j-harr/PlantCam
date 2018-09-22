@@ -4,10 +4,12 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Master {
-	public static void execute() {
+	public static void execute() throws Exception {
 		System.out.println("Executing as MASTER");
 		System.out.println("Format: xxx.xxx.xxx.xxx=>Type your message here");
 		System.out.println("Type 'exit' to quit");
+		FindDevices deviceFinder = new FindDevices(9020);
+		deviceFinder.call();
 		Scanner scan = new Scanner(System.in);
 		while(true) {
 			String line = scan.nextLine();

@@ -1,15 +1,21 @@
+/**
+ * 
+ * @author Jacob Harrison
+ * 
+ *
+ */
 
 public class PlantCam {
 	public static void main(String[] args) {
 		if(args.length == 0) {
 			System.out.println("Please use the format : "
-					+ "java PlantCam -m  OR  java PlantCam -n");
+					+ "java PlantCam -master  OR  java PlantCam -node");
 			Node.execute();
 		}
 		else {
-			if(args[0].equals("-m")) {
+			if(args[0].equals("-master")) {
 				Master.execute();
-			} else if(args[0].equals("-n")) {
+			} else if(args[0].equals("-node")) {
 				Node.execute();
 			}
 		}

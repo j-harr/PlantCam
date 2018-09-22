@@ -1,2 +1,10 @@
 /Client.class
 /Server.class
+/Device.class
+/Master.class
+/NetworkScanner.class
+/Node.class
+/PlantCam.class
+/Root.class
+/Broadcast.class
+/FindDevices.class
