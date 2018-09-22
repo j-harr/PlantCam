@@ -15,9 +15,11 @@ public class Broadcast implements Callable<Object>{
 		
 		portNum = port;
 		localhost = InetAddress.getLocalHost().getHostAddress();
-		if(localhost.substring(0,3).equals("127"))
-			baseNetwork = Config.baseNetwork;
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
+		if(localhost.substring(0,3).equals("127")) {
+			baseNetwork = Config.baseNetwork;
+			System.out.println("Using base network: " + baseNetwork);
+		}
 		System.out.println(localhost);
 	}
 
