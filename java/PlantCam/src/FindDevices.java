@@ -26,14 +26,15 @@ public class FindDevices implements Callable<Object> {
 	public List<String> call() throws Exception {
 		devices = new ArrayList<String>();
 		s = new DatagramSocket(portNum);
-		int attempts = 0;
-		while(attempts < 20) {
+		int repeats = 0;
+		while(repeats < 2) {
 			byte[] recvBuffer = new byte[msg_length];
 			DatagramPacket packet = new DatagramPacket(recvBuffer, msg_length);
 			s.receive(packet);
 			String receiveStr = new String(recvBuffer);
-			System.out.println(receiveStr);
+			
 			if(devices.contains(receiveStr) == false) {
+				System.out.println(receiveStr);
 				devices.add(receiveStr);
 			}
 		}
