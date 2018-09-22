@@ -13,6 +13,7 @@ public class Node {
 		Broadcast bcaster = new Broadcast(9020);
 		bcaster.call();
 		try {
+			System.out.println("Got to server socket.");
 			ServerSocket listener = new ServerSocket(9060);
 			while(true) {
 				Socket socket = listener.accept();

@@ -11,6 +11,7 @@ public class Broadcast implements Callable<Object>{
 	private DatagramSocket s;
 	
 	public Broadcast(int port) throws UnknownHostException {
+		System.out.println("Broadcast constructor");
 		portNum = port;
 		localhost = InetAddress.getLocalHost().getHostAddress();
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
@@ -19,6 +20,7 @@ public class Broadcast implements Callable<Object>{
 	public Object call() throws Exception {
 		s = new DatagramSocket(portNum);
 		while(true) {
+			System.out.println("Starting broadcast");
 			for(int i = 1; i <= 255; i++) {
 				String ip = baseNetwork+ "." + Integer.toString(i);
 				InetAddress reciever = InetAddress.getByName(ip);
