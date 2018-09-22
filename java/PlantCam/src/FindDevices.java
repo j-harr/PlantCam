@@ -32,13 +32,10 @@ public class FindDevices implements Callable<Object> {
 		while(repeats < 2 && attempts++ <= 5) {
 			System.out.println("Find Devices Loop on port" + portNum);
 			byte[] recvBuffer = new byte[msg_length];
-			System.out.println("Here 1");
 			DatagramPacket packet = new DatagramPacket(recvBuffer, msg_length);
-			System.out.println("Here 2");
+			System.out.println("Waiting to receive packet.");
 			s.receive(packet);
-			System.out.println("Here 3");
 			String receiveStr = new String(recvBuffer);
-			System.out.println("HEre 4");
 			
 			if(devices.contains(receiveStr) == false) {
 				System.out.println(receiveStr);
