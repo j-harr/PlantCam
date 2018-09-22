@@ -11,6 +11,7 @@ public class Master {
 		FindDevices deviceFinder = new FindDevices(9020);
 		deviceFinder.call();
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Starting loop in Master");
 		while(true) {
 			String line = scan.nextLine();
 			if(line.equalsIgnoreCase("EXIT"))
