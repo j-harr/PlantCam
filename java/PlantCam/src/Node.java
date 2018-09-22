@@ -6,12 +6,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 
 public class Node {
 	public static void execute() throws Exception {
 		System.out.println("Executing as NODE");
-		Broadcast bcaster = new Broadcast(9030);
-		bcaster.call();
+		Callable<Object> bcaster = new Broadcast(9030);
+		FutureTask<Object> broadcastTask = new FutureTask<Object>(bcaster);
+		Thread t_broadcast = new Thread(broadcastTask);
+		t_broadcast.start();
 		try {
 			System.out.println("Got to server socket.");
 			ServerSocket listener = new ServerSocket(9060);
