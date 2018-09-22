@@ -8,7 +8,7 @@ public class Master {
 		System.out.println("Executing as MASTER");
 		System.out.println("Format: xxx.xxx.xxx.xxx=>Type your message here");
 		System.out.println("Type 'exit' to quit");
-		FindDevices deviceFinder = new FindDevices(9020);
+		FindDevices deviceFinder = new FindDevices(9030);
 		deviceFinder.call();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Starting loop in Master");

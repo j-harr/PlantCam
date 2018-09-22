@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 public class Node {
 	public static void execute() throws Exception {
 		System.out.println("Executing as NODE");
-		Broadcast bcaster = new Broadcast(9020);
+		Broadcast bcaster = new Broadcast(9030);
 		bcaster.call();
 		try {
 			System.out.println("Got to server socket.");

@@ -12,9 +12,11 @@ public class Broadcast implements Callable<Object>{
 	
 	public Broadcast(int port) throws UnknownHostException {
 		System.out.println("Broadcast constructor");
+		
 		portNum = port;
 		localhost = InetAddress.getLocalHost().getHostAddress();
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
+		System.out.println(localhost);
 	}
 
 	public Object call() throws Exception {
