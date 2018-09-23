@@ -5,5 +5,5 @@ public class Config {
 	public static int discoveryResponsePort = 9031;
 	public static int commandsPort = 9060;
 	public static int commandsResponsePort = 9061;
-	public static int findDeviceTimeout = 4000;
+	public static int findDeviceTimeout = 2000;
 }

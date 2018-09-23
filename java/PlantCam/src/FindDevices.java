@@ -32,19 +32,23 @@ public class FindDevices implements Callable<Object> {
 		ArrayList<String> addresses = new ArrayList<String>();
 		byte[] recvBuffer = new byte[msg_length];
 		DatagramPacket packet;
+		int repeats = 0;
 		
 		/* Main Loop - packets from discoverable devices received */
-		while(true) {
+		while(true && repeats < 40) {
 			try {
 			packet = new DatagramPacket(recvBuffer, msg_length);
 			s.receive(packet);
 			String receiveStr = new String(recvBuffer);
 			String address = receiveStr.substring(0, receiveStr.indexOf("="));
-			String hostname = receiveStr.substring(receiveStr.indexOf("="));
+			String hostname = receiveStr.substring(receiveStr.indexOf("=") + 1);
 			
 			if(addresses.contains(address) == false) {
 				System.out.println(hostname);
 				devices.add(new Device(hostname, address));
+				addresses.add(address);
+			} else {
+				repeats++;
 			}
 			} catch(SocketTimeoutException e) {
 				System.out.println(devices.size() + " devices found after " 
