@@ -7,14 +7,15 @@ import java.util.concurrent.Callable;
 public class Broadcast implements Callable<Object>{
 	private int portNum;
 	private String localhost;
+	private String hostname;
 	private String baseNetwork;
 	private DatagramSocket s;
 	
 	public Broadcast(int port) throws UnknownHostException {
 		System.out.println("Broadcast constructor");
-		
 		portNum = port;
 		localhost = InetAddress.getLocalHost().getHostAddress();
+		hostname = InetAddress.getLocalHost().getHostName();
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
 		if(localhost.substring(0,3).equals("127")) {
 			baseNetwork = Config.baseNetwork;
@@ -24,13 +25,17 @@ public class Broadcast implements Callable<Object>{
 	}
 
 	public Object call() throws Exception {
+		/* Sending a non-blocking UDP message */
 		s = new DatagramSocket(portNum);
+		
+		/* Broadcast Continuously */
 		while(true) {
-			System.out.println("Starting broadcast");
+			System.out.println("Broadcasting...");
+			/* Send device name and address to every address on LAN */
 			for(int i = 1; i <= 255; i++) {
 				String ip = baseNetwork+ "." + Integer.toString(i);
 				InetAddress reciever = InetAddress.getByName(ip);
-				byte[] sendBuffer = localhost.getBytes();
+				byte[] sendBuffer = (localhost + "=" + hostname).getBytes();
 				DatagramPacket packet = new DatagramPacket(sendBuffer,
 						sendBuffer.length, reciever, portNum);
 						

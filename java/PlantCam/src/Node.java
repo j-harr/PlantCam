@@ -11,16 +11,18 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 public class Node {
-	public static void execute() throws Exception {
+	public void execute() throws Exception {
 		System.out.println("Executing as NODE");
-		Callable<Object> bcaster = new Broadcast(9030);
+		Callable<Object> bcaster = new Broadcast(Config.discoveryPort);
 		FutureTask<Object> broadcastTask = new FutureTask<Object>(bcaster);
 		Thread t_broadcast = new Thread(broadcastTask);
 		t_broadcast.start();
+		
+		/* Listen for commands */
 		try {
-			System.out.println("Got to server socket.");
 			ServerSocket listener = new ServerSocket(9060);
 			while(true) {
+				System.out.println("Server waiting for command...");
 				Socket socket = listener.accept();
 				BufferedReader input = 
 						new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -30,7 +32,7 @@ public class Node {
 					try {
 					Process process = new ProcessBuilder("PlantCam").start();
 					} catch(Throwable t) {
-						System.out.println("Could not execute file");
+						System.out.println("Could not execute process");
 						t.printStackTrace();
 					}
 				}

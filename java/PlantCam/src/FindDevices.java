@@ -1,12 +1,13 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 public class FindDevices implements Callable<Object> {
 	private int portNum;
-	private List<String> devices;
+	private List<Device> devices;
 	private DatagramSocket s;
 	private int msg_length;
 	
@@ -24,22 +25,31 @@ public class FindDevices implements Callable<Object> {
 	}
 
 	@Override
-	public List<String> call() throws Exception {
-		devices = new ArrayList<String>();
+	public List<Device> call() throws Exception {
+		devices = new ArrayList<Device>();
 		s = new DatagramSocket(portNum);
-		int repeats = 0;
-		int attempts = 0;
-		while(repeats < 2 && attempts++ <= 5) {
-			System.out.println("Find Devices Loop on port" + portNum);
-			byte[] recvBuffer = new byte[msg_length];
-			DatagramPacket packet = new DatagramPacket(recvBuffer, msg_length);
-			System.out.println("Waiting to receive packet.");
+		s.setSoTimeout(Config.findDeviceTimeout);
+		ArrayList<String> addresses = new ArrayList<String>();
+		byte[] recvBuffer = new byte[msg_length];
+		DatagramPacket packet;
+		
+		/* Main Loop - packets from discoverable devices received */
+		while(true) {
+			try {
+			packet = new DatagramPacket(recvBuffer, msg_length);
 			s.receive(packet);
 			String receiveStr = new String(recvBuffer);
+			String address = receiveStr.substring(0, receiveStr.indexOf("="));
+			String hostname = receiveStr.substring(receiveStr.indexOf("="));
 			
-			if(devices.contains(receiveStr) == false) {
-				System.out.println(receiveStr);
-				devices.add(receiveStr);
+			if(addresses.contains(address) == false) {
+				System.out.println(hostname);
+				devices.add(new Device(hostname, address));
+			}
+			} catch(SocketTimeoutException e) {
+				System.out.println(devices.size() + " devices found after " 
+						+ Config.findDeviceTimeout + "ms.");
+				break;
 			}
 		}
 		return devices;

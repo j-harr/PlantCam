@@ -4,9 +4,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Master {
-	public static void execute() throws Exception {
+	public void execute() throws Exception {
 		System.out.println("Executing as MASTER");
-		System.out.println("Format: xxx.xxx.xxx.xxx=>Type your message here");
 		System.out.println("Type 'exit' to quit");
 		FindDevices deviceFinder = new FindDevices(9030);
 		deviceFinder.call();
@@ -18,17 +17,7 @@ public class Master {
 				break;
 			String host = line.substring(0, line.indexOf("=>"));
 			String message = line.substring(line.indexOf("=>"), line.length());
-			Socket s;
-			try {
-				s = new Socket(host, 9060);
-				PrintWriter out = 
-						new PrintWriter(s.getOutputStream(), true);
-				out.println(message);
-				s.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 		scan.close();
 	}
