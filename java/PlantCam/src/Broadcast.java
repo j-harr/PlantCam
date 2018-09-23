@@ -57,9 +57,12 @@ public class Broadcast implements Callable<Object>{
 			Enumeration<InetAddress> adr = ni.getInetAddresses();
 			while(adr.hasMoreElements()) {
 				InetAddress ia = (InetAddress) adr.nextElement();
-				if(ia.getHostAddress().substring(0, 3).equals("127") == false)
-					return ia.getHostAddress();
-				else hosts.add(ia.getHostAddress());
+				String a = ia.getHostAddress();
+				if((a.length() - a.replace(".","").length()) == 3) {
+					if(ia.getHostAddress().substring(0, 3).equals("127") == false)
+						return ia.getHostAddress();
+					else hosts.add(ia.getHostAddress());
+				}
 			}
 		}
 		if(hosts.isEmpty())
