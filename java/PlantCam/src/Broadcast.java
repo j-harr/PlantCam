@@ -21,6 +21,7 @@ public class Broadcast implements Callable<Object>{
 		portNum = port;
 		localhost = getLocalHost();
 		hostname = InetAddress.getLocalHost().getHostName();
+		System.out.println(localhost);
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
 		System.out.println(localhost);
 	}
