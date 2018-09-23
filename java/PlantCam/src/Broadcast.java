@@ -1,7 +1,12 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class Broadcast implements Callable<Object>{
@@ -11,16 +16,12 @@ public class Broadcast implements Callable<Object>{
 	private String baseNetwork;
 	private DatagramSocket s;
 	
-	public Broadcast(int port) throws UnknownHostException {
+	public Broadcast(int port) throws UnknownHostException, SocketException {
 		System.out.println("Broadcast constructor");
 		portNum = port;
-		localhost = InetAddress.getLocalHost().getHostAddress();
+		localhost = getLocalHost();
 		hostname = InetAddress.getLocalHost().getHostName();
 		baseNetwork = localhost.substring(0, localhost.lastIndexOf("."));
-		if(localhost.substring(0,3).equals("127")) {
-			baseNetwork = Config.baseNetwork;
-			System.out.println("Using base network: " + baseNetwork);
-		}
 		System.out.println(localhost);
 	}
 
@@ -45,5 +46,25 @@ public class Broadcast implements Callable<Object>{
 		}
 	}
 
-
+	public String getLocalHost() throws SocketException {
+		List<String> hosts = new ArrayList<String>();
+		
+		Enumeration<NetworkInterface> net;
+		net = NetworkInterface.getNetworkInterfaces();
+		while(net.hasMoreElements()) {
+			NetworkInterface ni = (NetworkInterface) net.nextElement();
+			Enumeration<InetAddress> adr = ni.getInetAddresses();
+			while(adr.hasMoreElements()) {
+				InetAddress ia = (InetAddress) adr.nextElement();
+				if(ia.getHostAddress().substring(0, 3).equals("127") == false)
+					return ia.getHostAddress();
+				else hosts.add(ia.getHostAddress());
+			}
+		}
+		if(hosts.isEmpty())
+			return "none";
+		else {
+			return hosts.get(0);
+		}
+	}
 }
