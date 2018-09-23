@@ -35,7 +35,7 @@ public class FindDevices implements Callable<Object> {
 		int repeats = 0;
 		
 		/* Main Loop - packets from discoverable devices received */
-		while(true && repeats < 40) {
+		while(true && repeats < 15) {
 			try {
 			packet = new DatagramPacket(recvBuffer, msg_length);
 			s.receive(packet);
@@ -44,6 +44,7 @@ public class FindDevices implements Callable<Object> {
 			String hostname = receiveStr.substring(receiveStr.indexOf("=") + 1);
 			
 			if(addresses.contains(address) == false) {
+				repeats = 0;
 				System.out.println(hostname);
 				devices.add(new Device(hostname, address));
 				addresses.add(address);

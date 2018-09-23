@@ -23,6 +23,7 @@ public class Master {
 			if(line.equalsIgnoreCase("EXIT"))
 				break;
 			else {
+				System.out.println("Sending message");
 				deviceGroup.send(line);
 			}
 			
