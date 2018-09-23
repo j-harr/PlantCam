@@ -59,7 +59,8 @@ public class Broadcast implements Callable<Object>{
 				InetAddress ia = (InetAddress) adr.nextElement();
 				String a = ia.getHostAddress();
 				if((a.length() - a.replace(".","").length()) == 3) {
-					if(ia.getHostAddress().substring(0, 3).equals("127") == false)
+					String base = a.substring(0, 3);
+					if(base.equals("127") == false && base.equals("172") == false)
 						return ia.getHostAddress();
 					else hosts.add(ia.getHostAddress());
 				}
