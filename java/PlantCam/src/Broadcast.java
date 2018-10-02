@@ -47,7 +47,7 @@ public class Broadcast implements Callable<Object>{
 		}
 	}
 
-	public String getLocalHost() throws SocketException {
+	public static String getLocalHost() throws SocketException {
 		List<String> hosts = new ArrayList<String>();
 		
 		Enumeration<NetworkInterface> net;
