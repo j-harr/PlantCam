@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
@@ -17,13 +18,13 @@ import javafx.scene.layout.FlowPane;
 public class Main extends Application {
 
     @FXML
-    private ListView<String> listView;
+    private ListView<String> deviceListView;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ObservableList<String> outputLog = FXCollections.observableArrayList();
-        listView = new ListView<>(outputLog);
-        listView.setEditable(true);
+        ObservableList<String> devices = FXCollections.observableArrayList();
+        deviceListView = new ListView<>(devices);
+        deviceListView.setEditable(true);
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("PlantCam");

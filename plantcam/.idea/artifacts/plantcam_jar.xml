@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="plantcam:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/plantcam_jar</output-path>
+    <root id="archive" name="plantcam.jar">
+      <element id="module-output" name="plantcam" />
+    </root>
+  </artifact>
+</component>

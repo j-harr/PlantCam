@@ -1,3 +1,4 @@
+package plantcam;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,17 +11,25 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
-public class Node {
-	public void execute() throws Exception {
+public class Node implements Callable<Object>{
+
+	private Config cfg;
+
+	public Node(Config configuration){
+		cfg = configuration;
+	}
+
+	public Object call() throws Exception {
 		System.out.println("Executing as NODE");
-		Callable<Object> bcaster = new Broadcast(Config.discoveryPort);
-		FutureTask<Object> broadcastTask = new FutureTask<Object>(bcaster);
-		Thread t_broadcast = new Thread(broadcastTask);
-		t_broadcast.start();
+		/* Start Responder */
+		Callable<Object> responder = new Responder(cfg);
+		FutureTask<Object> responderTask = new FutureTask<Object>(responder);
+		Thread t_responder = new Thread(responderTask);
+		t_responder.start();
 		
 		/* Listen for commands */
 		try {
-			ServerSocket listener = new ServerSocket(9060);
+			ServerSocket listener = new ServerSocket(cfg.getDiscoveryPort());
 			while(true) {
 				System.out.println("Server waiting for command...");
 				Socket socket = listener.accept();
@@ -41,5 +50,6 @@ public class Node {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

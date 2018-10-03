@@ -1,3 +1,4 @@
+package plantcam;
 import java.util.List;
 
 public class DeviceGroup {

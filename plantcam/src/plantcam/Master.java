@@ -1,3 +1,4 @@
+package plantcam;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -7,11 +8,20 @@ import java.util.Scanner;
 public class Master {
 	private List<Device> devices;
 	private DeviceGroup deviceGroup;
+	private Config cfg;
+
+	public Master(){
+	    cfg = new Config();
+    }
+
+    public Master(Config cfg){
+	    this.cfg = cfg;
+    }
 	
 	public void execute() throws Exception {
 		System.out.println("Executing as MASTER");
 		System.out.println("Type 'exit' to quit");
-		FindDevices deviceFinder = new FindDevices(9030);
+		FindDevices deviceFinder = new FindDevices(cfg);
 		
 		devices = deviceFinder.call();
 		deviceGroup = new DeviceGroup(devices);
@@ -24,7 +34,7 @@ public class Master {
 				break;
 			else {
 				System.out.println("Sending message");
-				deviceGroup.send(line);
+				deviceGroup.sendToAll(line);
 			}
 			
 		}

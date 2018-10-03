@@ -1,6 +1,7 @@
 package com.plantcam.jacob.plantcam;
 
 import android.bluetooth.BluetoothClass;
+import android.os.Handler;
 import android.util.Log;
 
 import java.net.DatagramPacket;
@@ -15,6 +16,7 @@ public class FindDevices implements Callable<Object> {
     private List<Device> devices;
     private DatagramSocket s;
     private int msg_length;
+    private Handler handler;
 
     public FindDevices(int port, int msg_length) {
         //System.out.println("Find Devices COnstructor");
@@ -24,7 +26,8 @@ public class FindDevices implements Callable<Object> {
         else this.msg_length = msg_length;
     }
 
-    public FindDevices(int port) {
+    public FindDevices(Handler h, int port) {
+        handler = h;
         portNum = port;
         msg_length = 100;
     }
@@ -72,6 +75,7 @@ public class FindDevices implements Callable<Object> {
             }
         }
         s.close();
+        handler.sendEmptyMessage(0);
         return devices;
     }
 }
