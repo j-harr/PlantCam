@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Broadcast.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Broadcast.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Config.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Config.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Device.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Device.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/DeviceGroup.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/DeviceGroup.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/FindDevices.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/FindDevices.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Master.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Master.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Node.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Node.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/PlantCam.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/PlantCam.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Root.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Root.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../java/PlantCam/src/Test.java" afterPath="$PROJECT_DIR$/../java/PlantCam/src/plantcam/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/DeviceAdapter.java" afterPath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/DeviceAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/FindDevices.java" afterPath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/FindDevices.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/MasterActivity.java" afterPath="$PROJECT_DIR$/../Android/app/src/main/java/com/plantcam/jacob/plantcam/MasterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Android/app/src/main/res/layout/activity_master.xml" afterPath="$PROJECT_DIR$/../Android/app/src/main/res/layout/activity_master.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI.iml" afterPath="$PROJECT_DIR$/GUI.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Controller.java" afterPath="$PROJECT_DIR$/src/sample/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/sample.fxml" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../plantcam/out/artifacts/plantcam_jar/plantcam.jar" afterPath="$PROJECT_DIR$/../plantcam/out/artifacts/plantcam_jar/plantcam.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../plantcam/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../plantcam/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../plantcam/out/production/plantcam/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../plantcam/out/production/plantcam/META-INF/MANIFEST.MF" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
