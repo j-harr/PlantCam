@@ -1,11 +1,14 @@
 package plantcam;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
+
+import static java.lang.Thread.interrupted;
 
 public class FindDevices implements Callable<Object> {
 	private int broadcastPort;
@@ -44,49 +47,68 @@ public class FindDevices implements Callable<Object> {
     }
 
 	@Override
-	public List<Device> call() throws Exception {
+	public List<Device> call() {
+	    System.out.println("Find Devices call");
 		devices = new ArrayList<Device>();
 
 		/* Begin broadcasting */
-		Callable<Object> bcaster = new Broadcast(broadcastPort);
-		FutureTask<Object> broadcastTask = new FutureTask<Object>(bcaster);
-		Thread t_broadcast = new Thread(broadcastTask);
-		t_broadcast.start();
+        Callable<Object> bcaster = null;
+        try {
+            bcaster = new Broadcast(broadcastPort);
+            FutureTask<Object> broadcastTask = new FutureTask<Object>(bcaster);
+            Thread t_broadcast = new Thread(broadcastTask);
+            System.out.println(t_broadcast.getId());
+            t_broadcast.start();
 
 		/* Listen for responses */
-		s = new DatagramSocket(listenPort);
-		s.setSoTimeout(deviceTimeout);
-		ArrayList<String> addresses = new ArrayList<String>();
-		byte[] recvBuffer = new byte[msg_length];
-		DatagramPacket packet;
-		int repeats = 0;
-		int timeouts = 0;
-		
+            s = new DatagramSocket(listenPort);
+            s.setSoTimeout(deviceTimeout);
+            ArrayList<String> addresses = new ArrayList<String>();
+            byte[] recvBuffer = new byte[msg_length];
+            DatagramPacket packet;
+            int repeats = 0;
+            int timeouts = 0;
+
 		/* Main Loop - packets from discoverable devices received */
-		while(repeats < 15 && timeouts < 10) {
-			try {
-			packet = new DatagramPacket(recvBuffer, msg_length);
-			s.receive(packet);
-			String receiveStr = new String(recvBuffer);
-			String address = receiveStr.substring(0, receiveStr.indexOf("="));
-			String hostname = receiveStr.substring(receiveStr.indexOf("=") + 1);
-			
-			if(addresses.contains(address) == false) {
-				repeats = 0;
-				System.out.println(hostname);
-				devices.add(new Device(hostname, address));
-				addresses.add(address);
-			} else {
-				repeats++;
-			}
-			} catch(SocketTimeoutException e) {
-				System.out.println(devices.size() + " devices found after " 
-						+ deviceTimeout + "ms.");
-				timeouts++;
-			}
-		}
-		t_broadcast.interrupt();
-		s.close();
+            while(repeats < 10 && timeouts < 2 && !interrupted()) {
+                try {
+                    packet = new DatagramPacket(recvBuffer, msg_length);
+                    s.receive(packet);
+                    String receiveStr = new String(recvBuffer);
+                    String address = receiveStr.substring(0, receiveStr.indexOf("="));
+                    String hostname = receiveStr.substring(receiveStr.indexOf("=") + 1);
+
+                    if(addresses.contains(address) == false) {
+                        repeats = 0;
+                        System.out.println(hostname);
+                        devices.add(new Device(hostname, address));
+                        addresses.add(address);
+                    } else {
+                        repeats++;
+                    }
+                } catch(SocketTimeoutException e) {
+                    System.out.println(devices.size() + " devices found after "
+                            + deviceTimeout + "ms.");
+                    timeouts++;
+                }
+            }
+            t_broadcast.interrupt();
+            t_broadcast.join();
+        } catch (UnknownHostException e) {
+            System.out.println("UnknownHostException in Find Devices");
+            e.printStackTrace();
+        } catch (SocketException e) {
+            System.out.println("SocketException in Find Devices");
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            System.out.println("InterruptedException in Find Devices");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("IOException in Find Devices");
+            e.printStackTrace();
+        }
+
+        s.close();
 		return devices;
 	}
 	

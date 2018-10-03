@@ -1,40 +1,78 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.ListView;
 import plantcam.Config;
 import plantcam.Device;
 import plantcam.FindDevices;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.*;
 
 
 public class Controller {
+    private Model model;
+    private boolean findingDevices = false;
+
+    @FXML
+    private ListView<String> deviceListView;
+
+
+    public Controller(Model model){
+        this.model = model;
+        deviceListView = new ListView<String>(model.getDeviceList());
+    }
+
     private List<Device> devices;
 
     @FXML
-    private ObservableList<String> deviceList;
-
-    @FXML
-    private ListView deviceListView;
+    private void handleFindDevicesButton(ActionEvent event){
+    }
 
     @FXML
     private void findDevices() throws Exception {
-        Config cfg = new Config();
-        System.out.println("Finding devices");
-        FindDevices deviceFinder = new FindDevices(cfg);
-        devices = deviceFinder.call();
-        deviceList.clear();
-        for(Device d : devices){
-            deviceList.add(d.name() + "\t" + d.address());
+        if(findingDevices == false){
+            findingDevices = true;
+            new Thread(){
+                public void run(){
+                    System.out.println("Finding devices");
+                    FindDevices deviceFinder = new FindDevices(model.config());
+                    try {
+                        System.out.println("Calling device Finder");
+                        devices = deviceFinder.call();
+                        System.out.println("Done");
+                    } catch (Exception e) {
+                        System.out.println("This is an exception in findDevices controller");
+                        e.printStackTrace();
+                    }
+
+                    Platform.runLater(new Runnable(){
+                        @Override
+                        public void run(){
+                            model.clearDeviceList();
+                            for(Device d : devices){
+                                model.addDevice(d.name() + "\t" + d.address());
+                            }
+                            deviceListView.setItems(model.getDeviceList());
+                        }
+                    });
+                    findingDevices = false;
+                }
+            }.start();
+        } else{
+            System.out.println("Currently looking for devices already");
         }
+
+
+
     }
 }

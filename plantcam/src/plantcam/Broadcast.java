@@ -61,25 +61,37 @@ public class Broadcast implements Callable<Object>{
      * @throws IOException Failed to send packet.
      * @throws InterruptedException Could not put thread to sleep.
      */
-	public Object call() throws IOException, InterruptedException {
+	public Object call() {
+	    System.out.println("Calling Broadcast call");
+
 		/* Sending a non-blocking UDP message */
-		s = new DatagramSocket(portNum);
-		
+        try {
+            s = new DatagramSocket(portNum);
+            System.out.println("Socket");
 		/* Broadcast Continuously */
-		while(!interrupted()) {
-			System.out.println("Broadcasting...");
+            System.out.println("Broadcast main loop" + Thread.currentThread().getId());
+            while (!Thread.currentThread().isInterrupted()) {
+
+                System.out.println("Broadcasting...");
 			/* Send device name and address to every address on LAN */
-			for(int i = 1; i <= 255; i++) {
-				String ip = baseNetwork+ "." + Integer.toString(i);
-				InetAddress receiver = InetAddress.getByName(ip);
-				byte[] sendBuffer = message.getBytes();
-				DatagramPacket packet = new DatagramPacket(sendBuffer,
-						sendBuffer.length, receiver, portNum);
-				s.send(packet);
-			}
-			Thread.sleep(500);
-		}
-		s.close();
+                for (int i = 1; i <= 255; i++) {
+                    String ip = baseNetwork + "." + Integer.toString(i);
+                    InetAddress receiver = InetAddress.getByName(ip);
+                    byte[] sendBuffer = message.getBytes();
+                    DatagramPacket packet = new DatagramPacket(sendBuffer,
+                            sendBuffer.length, receiver, portNum);
+                    s.send(packet);
+                }
+                Thread.sleep(500);
+            }
+        } catch(IOException ie){
+            ie.printStackTrace();
+            s.close();
+        } catch(InterruptedException p){
+            System.out.println("Interrupted exception on Broadcast");
+            s.close();
+        }
+        s.close();
 		return null;
 	}
 

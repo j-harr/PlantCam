@@ -14,19 +14,26 @@ import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.util.Callback;
 
 public class Main extends Application {
 
-    @FXML
-    private ListView<String> deviceListView;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ObservableList<String> devices = FXCollections.observableArrayList();
-        deviceListView = new ListView<>(devices);
-        deviceListView.setEditable(true);
+        final Model model = new Model();
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("sample.fxml"));
+        loader.setControllerFactory(new Callback<Class<?>, Object>() {
+            @Override
+            public Object call(Class<?> aClass){
+                return new Controller(model);
+            }
+        });
+
+        Parent root = loader.load();
+
         primaryStage.setTitle("PlantCam");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
