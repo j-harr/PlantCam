@@ -1,5 +1,5 @@
 package plantcam;
-import java.util.List;
+import java.util.*;
 
 public class DeviceGroup {
 	private List<Device> devices;
@@ -26,7 +26,14 @@ public class DeviceGroup {
 			System.out.println("Message sent");
 		}
 	}
-	
-	
-	
+
+	public void setDevices(List<Device> deviceList){
+	    devices.clear();
+	    devices = new ArrayList<Device>(deviceList);
+    }
+
+    public List<Device> getDevices(){return devices;}
+
+
+
 }

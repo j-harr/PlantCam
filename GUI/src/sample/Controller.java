@@ -32,10 +32,11 @@ public class Controller {
         deviceListView = new ListView<String>(model.getDeviceList());
     }
 
-    private List<Device> devices;
+
 
     @FXML
-    private void handleFindDevicesButton(ActionEvent event){
+    private void takePicture(){
+        model.getDeviceGroup().sendToAll("Please take the picture.");
     }
 
     @FXML
@@ -48,7 +49,7 @@ public class Controller {
                     FindDevices deviceFinder = new FindDevices(model.config());
                     try {
                         System.out.println("Calling device Finder");
-                        devices = deviceFinder.call();
+                        model.setDevices(deviceFinder.call());
                         System.out.println("Done");
                     } catch (Exception e) {
                         System.out.println("This is an exception in findDevices controller");
@@ -59,7 +60,7 @@ public class Controller {
                         @Override
                         public void run(){
                             model.clearDeviceList();
-                            for(Device d : devices){
+                            for(Device d : model.getDevices()){
                                 model.addDevice(d.name() + "\t" + d.address());
                             }
                             deviceListView.setItems(model.getDeviceList());

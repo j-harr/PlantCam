@@ -29,7 +29,7 @@ public class Node implements Callable<Object>{
 		
 		/* Listen for commands */
 		try {
-			ServerSocket listener = new ServerSocket(cfg.getDiscoveryPort());
+			ServerSocket listener = new ServerSocket(cfg.getCommandsPort());
 			while(true) {
 				System.out.println("Server waiting for command...");
 				Socket socket = listener.accept();
