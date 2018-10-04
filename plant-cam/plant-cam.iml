@@ -11,32 +11,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" scope="PROVIDED">
-      <library name="PlantCam">
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../java/PlantCam/src" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../plantcam/out/artifacts/plantcam_jar/plantcam.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: mst:plantcam:1.0-SNAPSHOT">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../plantcam/target/plantcam-1.0-SNAPSHOT.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
