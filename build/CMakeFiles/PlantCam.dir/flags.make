@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jacob/PlantCam -isystem /usr/local/include -isystem /usr/local/include/opencv -I/home/jacob/PlantCam/include 
+CXX_INCLUDES = -I/home/jacob/PlantCam -isystem /usr/local/include -isystem /usr/local/include/opencv -I/home/jacob/PlantCam/include -I/home/jacob/PlantCam/... 
 

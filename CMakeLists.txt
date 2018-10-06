@@ -15,7 +15,11 @@ endif( OpenCV_FOUND )
 include_directories(include)
 file(GLOB SOURCES "src/*.cpp")
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+find_package(Boost REQUIRED system)
+include_directories(... ${Boost_INCLUDE_DIRS})
+
+add_executable(${PROJECT_NAME} "src/stream.cpp")
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
 install (TARGETS ${PROJECT_NAME} DESTINATION  bin)

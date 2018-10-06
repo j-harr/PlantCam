@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/PlantCam.dir/src/main.cpp.o"
+  "CMakeFiles/PlantCam.dir/src/stream.cpp.o"
   "PlantCam.pdb"
   "PlantCam"
 )

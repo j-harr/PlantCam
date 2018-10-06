@@ -6,18 +6,16 @@
 
 #IncludeRegexTransform: 
 
-/home/jacob/PlantCam/src/main.cpp
+/home/jacob/PlantCam/src/stream.cpp
 opencv2/objdetect/objdetect.hpp
 -
 opencv2/highgui/highgui.hpp
 -
 opencv2/imgproc/imgproc.hpp
 -
+boost/asio.hpp
+-
 iostream
--
-stdio.h
--
-ctime
 -
 
 /usr/local/include/opencv/cxcore.h

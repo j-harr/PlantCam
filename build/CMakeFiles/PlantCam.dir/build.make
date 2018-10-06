@@ -57,38 +57,38 @@ include CMakeFiles/PlantCam.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/PlantCam.dir/flags.make
 
-CMakeFiles/PlantCam.dir/src/main.cpp.o: CMakeFiles/PlantCam.dir/flags.make
-CMakeFiles/PlantCam.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jacob/PlantCam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PlantCam.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PlantCam.dir/src/main.cpp.o -c /home/jacob/PlantCam/src/main.cpp
+CMakeFiles/PlantCam.dir/src/stream.cpp.o: CMakeFiles/PlantCam.dir/flags.make
+CMakeFiles/PlantCam.dir/src/stream.cpp.o: ../src/stream.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jacob/PlantCam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PlantCam.dir/src/stream.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PlantCam.dir/src/stream.cpp.o -c /home/jacob/PlantCam/src/stream.cpp
 
-CMakeFiles/PlantCam.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PlantCam.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jacob/PlantCam/src/main.cpp > CMakeFiles/PlantCam.dir/src/main.cpp.i
+CMakeFiles/PlantCam.dir/src/stream.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PlantCam.dir/src/stream.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jacob/PlantCam/src/stream.cpp > CMakeFiles/PlantCam.dir/src/stream.cpp.i
 
-CMakeFiles/PlantCam.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PlantCam.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jacob/PlantCam/src/main.cpp -o CMakeFiles/PlantCam.dir/src/main.cpp.s
+CMakeFiles/PlantCam.dir/src/stream.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PlantCam.dir/src/stream.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jacob/PlantCam/src/stream.cpp -o CMakeFiles/PlantCam.dir/src/stream.cpp.s
 
-CMakeFiles/PlantCam.dir/src/main.cpp.o.requires:
+CMakeFiles/PlantCam.dir/src/stream.cpp.o.requires:
 
-.PHONY : CMakeFiles/PlantCam.dir/src/main.cpp.o.requires
+.PHONY : CMakeFiles/PlantCam.dir/src/stream.cpp.o.requires
 
-CMakeFiles/PlantCam.dir/src/main.cpp.o.provides: CMakeFiles/PlantCam.dir/src/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/main.cpp.o.provides.build
-.PHONY : CMakeFiles/PlantCam.dir/src/main.cpp.o.provides
+CMakeFiles/PlantCam.dir/src/stream.cpp.o.provides: CMakeFiles/PlantCam.dir/src/stream.cpp.o.requires
+	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/stream.cpp.o.provides.build
+.PHONY : CMakeFiles/PlantCam.dir/src/stream.cpp.o.provides
 
-CMakeFiles/PlantCam.dir/src/main.cpp.o.provides.build: CMakeFiles/PlantCam.dir/src/main.cpp.o
+CMakeFiles/PlantCam.dir/src/stream.cpp.o.provides.build: CMakeFiles/PlantCam.dir/src/stream.cpp.o
 
 
 # Object files for target PlantCam
 PlantCam_OBJECTS = \
-"CMakeFiles/PlantCam.dir/src/main.cpp.o"
+"CMakeFiles/PlantCam.dir/src/stream.cpp.o"
 
 # External object files for target PlantCam
 PlantCam_EXTERNAL_OBJECTS =
 
-PlantCam: CMakeFiles/PlantCam.dir/src/main.cpp.o
+PlantCam: CMakeFiles/PlantCam.dir/src/stream.cpp.o
 PlantCam: CMakeFiles/PlantCam.dir/build.make
 PlantCam: /usr/local/lib/libopencv_stitching.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_superres.so.3.4.3
@@ -120,6 +120,7 @@ PlantCam: /usr/local/lib/libopencv_xfeatures2d.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_ximgproc.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_xobjdetect.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_xphoto.so.3.4.3
+PlantCam: /usr/lib/x86_64-linux-gnu/libboost_system.so
 PlantCam: /usr/local/lib/libopencv_photo.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_shape.so.3.4.3
 PlantCam: /usr/local/lib/libopencv_calib3d.so.3.4.3
@@ -147,7 +148,7 @@ CMakeFiles/PlantCam.dir/build: PlantCam
 
 .PHONY : CMakeFiles/PlantCam.dir/build
 
-CMakeFiles/PlantCam.dir/requires: CMakeFiles/PlantCam.dir/src/main.cpp.o.requires
+CMakeFiles/PlantCam.dir/requires: CMakeFiles/PlantCam.dir/src/stream.cpp.o.requires
 
 .PHONY : CMakeFiles/PlantCam.dir/requires
 

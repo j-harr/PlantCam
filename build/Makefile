@@ -169,32 +169,32 @@ PlantCam/fast:
 	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/build
 .PHONY : PlantCam/fast
 
-src/main.o: src/main.cpp.o
+src/stream.o: src/stream.cpp.o
 
-.PHONY : src/main.o
+.PHONY : src/stream.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/stream.cpp.o:
+	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/stream.cpp.o
+.PHONY : src/stream.cpp.o
 
-src/main.i: src/main.cpp.i
+src/stream.i: src/stream.cpp.i
 
-.PHONY : src/main.i
+.PHONY : src/stream.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/stream.cpp.i:
+	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/stream.cpp.i
+.PHONY : src/stream.cpp.i
 
-src/main.s: src/main.cpp.s
+src/stream.s: src/stream.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/stream.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/stream.cpp.s:
+	$(MAKE) -f CMakeFiles/PlantCam.dir/build.make CMakeFiles/PlantCam.dir/src/stream.cpp.s
+.PHONY : src/stream.cpp.s
 
 # Help Target
 help:
@@ -209,9 +209,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... install/local"
 	@echo "... install"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/stream.o"
+	@echo "... src/stream.i"
+	@echo "... src/stream.s"
 .PHONY : help
 
 
