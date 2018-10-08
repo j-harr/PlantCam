@@ -28,4 +28,5 @@ void videoStream::begin(std::shared_ptr<bool> halt){
         /* Send the frame */
     }
     std::cout << "Stopping the streaming" << std::endl;
+    return;
 }
