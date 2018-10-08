@@ -19,6 +19,15 @@ class videoStream{
         int port;                /** the port number */
         std::string address;     /** the ip address of destination */   
         std::shared_ptr<bool> halt;              /** stop signal to quit streaming */
+        std::thread thread;
+
+        /**
+         * Stream
+         * 
+         * @param halt the boolean that determines if the streaming should
+         *      continue.
+         */
+        void stream(std::shared_ptr<bool> halt);
 
     public:
 
@@ -31,19 +40,20 @@ class videoStream{
          */
         videoStream(const std::string& address, int port);
 
+        ~videoStream();
+
         /**
          * Begin streaming to device
          * 
          * @param halt reference to boolean value determining when the streaming
          *      should cease.
          */
-        void begin(std::shared_ptr<bool> halt);
+        void start();
 
         /**
-         * Spawn thread
-         * 
+         * Stop
          */
-        std::thread spawn(std::shared_ptr<bool> halt);
+        void stop();
 
 };
 

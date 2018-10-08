@@ -16,9 +16,32 @@ videoStream::videoStream(const std::string& address, int port){
 }
 
 /**
+ * Destructor
+ */
+videoStream::~videoStream(){
+    if(thread.joinable())
+        thread.join();
+}
+
+/**
+ * Start
+ */
+void videoStream::start(){
+    this->halt = std::make_shared<bool>(false);
+    thread = std::thread (&videoStream::stream, this->halt);
+}
+
+/**
+ * Stop
+ */
+void videoStream::stop(){
+    *halt = true;
+    thread.join();
+}
+/**
  * Begin - main streaming function
  */
-void videoStream::begin(std::shared_ptr<bool> halt){
+void videoStream::stream(std::shared_ptr<bool> halt){
     this->halt = halt;
 
     while(*halt == false){
@@ -29,11 +52,4 @@ void videoStream::begin(std::shared_ptr<bool> halt){
     }
     std::cout << "Stopping the streaming" << std::endl;
     return;
-}
-
-/**
- * Spawn
- */
-std::thread videoStream::spawn(std::shared_ptr<bool> halt){
-    return std::thread(this->begin, halt);
 }
