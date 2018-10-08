@@ -17,7 +17,7 @@ using boost::asio::ip::address;
 int main(int argc, char* argv[]){
     videoStream vStream("127.0.0.1", 9090);
     std::shared_ptr<bool> halt = std::make_shared<bool>(false);
-    std::thread streamThread = vStream.spawn(halt);
+    std::thread streamThread(&videoStream::begin, vStream, halt);
 
     std::string input;
     while(std::cin >> input){
