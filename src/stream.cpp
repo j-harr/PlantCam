@@ -1,3 +1,4 @@
+/*
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -6,32 +7,24 @@
 
 using boost::asio::ip::udp;
 using boost::asio::ip::address;
+*/
 
 #include <iostream>
+#include <string>
+#include <memory>
+#include "videoStream.hpp"
 
 int main(int argc, char* argv[]){
-    std::string address;
-    int port;
+    videoStream vStream("127.0.0.1", 9090);
+    std::shared_ptr<bool> halt = std::make_shared<bool>(false);
+    vStream.begin(halt);
 
-    if(argc == 3){
-        address = argv[1];
-        port = std::stoi(argv[2]);
-
-        boost::asio::io_service io_service;
-        udp::socket socket(io_service);
-        udp::endpoint remote_endpoint = udp::endpoint(address::from_string(address), port);
-        socket.open(udp::v4());
-
-        boost::system::error_code err;
-        auto sent = socket.send_to(boost::asio::buffer("Hello mate"), remote_endpoint, 0, err);
-        socket.close();
-        std::cout << "Sent and stuff" << std::endl;
-    } else{
-        std::cout << "Usage: stream <destinationaddr> <portnum>" << std::endl;
+    std::string input;
+    while(std::cin >> input){
+        if(input == "quit")
+            break;
+        else if(input == "stop")
+            *halt = true;
     }
-
-    /* Start Up the camera */
-
-    /* Connect to port */
     return 0;
 }
