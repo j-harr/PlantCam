@@ -39,6 +39,12 @@ class videoStream{
          */
         void begin(std::shared_ptr<bool> halt);
 
+        /**
+         * Spawn thread
+         * 
+         */
+        std::thread spawn(std::shared_ptr<bool> halt);
+
 };
 
 #endif

@@ -30,3 +30,10 @@ void videoStream::begin(std::shared_ptr<bool> halt){
     std::cout << "Stopping the streaming" << std::endl;
     return;
 }
+
+/**
+ * Spawn
+ */
+std::thread videoStream::spawn(std::shared_ptr<bool> halt){
+    return std::thread(begin, halt);
+}
