@@ -35,5 +35,5 @@ void videoStream::begin(std::shared_ptr<bool> halt){
  * Spawn
  */
 std::thread videoStream::spawn(std::shared_ptr<bool> halt){
-    return std::thread(&videoStream::begin, halt);
+    return std::thread([this, halt] { this->begin(halt); } );
 }
