@@ -18,7 +18,7 @@ class videoStream{
     private:
         int port;                /** the port number */
         std::string address;     /** the ip address of destination */   
-        std::shared_ptr<bool> &halt;              /** stop signal to quit streaming */
+        std::shared_ptr<bool> halt;              /** stop signal to quit streaming */
 
     public:
 
