@@ -18,7 +18,7 @@ file(GLOB SOURCES "src/*.cpp")
 find_package(Boost REQUIRED system)
 include_directories(... ${Boost_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME} "src/stream.cpp")
+add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
