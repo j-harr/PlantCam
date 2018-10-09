@@ -28,7 +28,7 @@ videoStream::~videoStream(){
  */
 void videoStream::start(){
     future = promise.get_future();
-    thread = std::thread (stream, std::move(future));
+    thread = std::thread (&videoStream::stream, this, std::move(future));
 }
 
 /**
