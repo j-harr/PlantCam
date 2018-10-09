@@ -44,7 +44,7 @@ void videoStream::stop(){
  */
 void videoStream::stream(std::future<void> future){
 
-    while(future.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready){
+    while(future.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout){
         /* Get frame */
         std::cout << "Streaming" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
