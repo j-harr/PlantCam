@@ -8,6 +8,11 @@
 #ifndef VIDEOSTREAM_HPP
 #define VIDEOSTREAM_HPP
 
+#include <boost/array.hpp>
+#include <boost/asio.hpp>
+
+using boost::asio::ip::udp;
+
 #include <iostream>
 #include <string>
 #include <memory>
