@@ -2,7 +2,7 @@ project(PlantCam)
 cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-
+set(CMAKE_CXX_FLAGS -pthread)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set( OpenCV_FOUND 1 )
