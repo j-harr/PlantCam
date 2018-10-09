@@ -27,24 +27,24 @@ videoStream::~videoStream(){
  * Start
  */
 void videoStream::start(){
-    this->halt = std::make_shared<bool>(false);
-    thread = std::thread (&videoStream::stream, this->halt);
+    future = promise.get_future();
+    thread = std::thread (&videoStream::stream, std::move(future));
 }
 
 /**
  * Stop
  */
 void videoStream::stop(){
-    *halt = true;
+    promise.set_value();
     thread.join();
 }
+
 /**
  * Begin - main streaming function
  */
-void videoStream::stream(std::shared_ptr<bool> halt){
-    this->halt = halt;
+void videoStream::stream(std::future<void> future){
 
-    while(*halt == false){
+    while(future.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout){
         /* Get frame */
         std::cout << "Streaming" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));

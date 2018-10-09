@@ -13,12 +13,14 @@
 #include <memory>
 #include <chrono>
 #include <thread>
+#include <future>
 
 class videoStream{
     private:
         int port;                /** the port number */
         std::string address;     /** the ip address of destination */   
-        std::shared_ptr<bool> halt;              /** stop signal to quit streaming */
+        std::promise<void> promise;              /** stop signal to quit streaming */
+        std::future<void> future;
         std::thread thread;
 
         /**
@@ -27,7 +29,7 @@ class videoStream{
          * @param halt the boolean that determines if the streaming should
          *      continue.
          */
-        void stream(std::shared_ptr<bool> halt);
+        void stream(std::future<void> halt);
 
     public:
 
