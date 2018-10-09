@@ -19,8 +19,7 @@ class videoStream{
     private:
         int port;                /** the port number */
         std::string address;     /** the ip address of destination */   
-        std::promise<bool> promise;              /** stop signal to quit streaming */
-        std::future<bool> future;
+        std::atomic<bool> halt;
         std::thread thread;
 
         /**
@@ -29,7 +28,7 @@ class videoStream{
          * @param halt the boolean that determines if the streaming should
          *      continue.
          */
-        void stream(std::future<bool> halt);
+        void stream();
 
     public:
 
