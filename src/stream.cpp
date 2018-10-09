@@ -16,16 +16,19 @@ using boost::asio::ip::address;
 
 int main(int argc, char* argv[]){
     videoStream vStream("127.0.0.1", 9090);
-    std::shared_ptr<bool> halt = std::make_shared<bool>(false);
     vStream.start();
 
     std::string input;
     while(std::cin >> input){
-        if(input == "quit")
+        if(input == "quit"){
             break;
-        else if(input == "stop")
-            *halt = true;
             vStream.stop();
+        }
+        else if(input == "stop"){
+            vStream.stop();
+        }
+        else
+            std::cout << "Continuing" << std::endl;
     }
     return 0;
 }
