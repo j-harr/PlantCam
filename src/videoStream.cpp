@@ -44,11 +44,28 @@ void videoStream::stop(){
  */
 void videoStream::stream(){
     try{
-        boost::asio::io_service io_service;
-        udp::socket socket(io_service);
-        socket.open(udp::v4());
-        socket.set_option(boost::asio::socket_base::broadcast(true));
-        udp::endpoint endpoint(boost::asio::ip::address::from_string(this->address), this->port);
+        int localSocket;
+        int remoteSocket;
+        
+        struct sockaddr_in localAddr;
+        struct sockaddr_in remoteAddr;
+
+        int addrLength = sizeof(struct sockaddr_in);
+        localSocket = socket(AF_INET, SOCK_STREAM, 0);
+        if(localSocket == -1){
+            std::cerr << "socket() call failed" << std::endl;
+        }
+
+        localAddr.sin_family = AF_INET;
+        localAddr.sin_addr.s_addr = INADDR_ANY;
+        localAddr.sin_port = htons( this->port );
+
+        /* Bind to socket */
+        if( bind(localSocket, (struct sockaddr *)&localAddr , sizeof(localAddr)) < 0){
+            std::cerr << "Can't bind to socket" << std::endl;
+        }
+
+        
 
         while(halt == false){
             /* Get frame */
@@ -56,8 +73,6 @@ void videoStream::stream(){
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
             /* Send the frame */
 
-            const char* data = "hello dude";
-            socket.send_to(boost::asio::buffer(data, strlen(data)), endpoint);
         }
     } catch (std::exception e){
         std::cout << e.what() << std::endl;

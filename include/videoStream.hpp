@@ -8,17 +8,17 @@
 #ifndef VIDEOSTREAM_HPP
 #define VIDEOSTREAM_HPP
 
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
-
-using boost::asio::ip::udp;
-
 #include <iostream>
 #include <string>
 #include <memory>
 #include <chrono>
 #include <thread>
 #include <future>
+
+#include <sys/socket.h>
+//#include <unistd.h>
+//#include <string.h>
+#include <arpa/inet.h>
 
 class videoStream{
     private:
