@@ -1,0 +1,7 @@
+/home/jacob/PlantCam/node/build/CMakeFiles/install/strip.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/edit_cache.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/node.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/rebuild_cache.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/list_install_components.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/install/local.dir
+/home/jacob/PlantCam/node/build/CMakeFiles/install.dir
