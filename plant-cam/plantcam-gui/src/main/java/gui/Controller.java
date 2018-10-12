@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ListView;
-
+import javafx.scene.image.ImageView;
 
 
 public class Controller {
@@ -17,6 +17,10 @@ public class Controller {
 
     @FXML
     private ListView<String> deviceListView;
+    @FXML
+    private ImageView imageView1;
+    private ImageView imageView2;
+    private ImageView imageView3;
 
 
     public Controller(Model model){
@@ -64,8 +68,5 @@ public class Controller {
         } else{
             System.out.println("Currently looking for devices already");
         }
-
-
-
     }
 }

@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javafx.util.Callback;
+import org.opencv.core.Core;
 
 public class Main extends Application {
 
+    static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 
     @Override
     public void start(Stage primaryStage) throws Exception{
