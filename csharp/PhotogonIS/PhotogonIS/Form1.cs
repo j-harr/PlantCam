@@ -16,6 +16,8 @@ namespace PhotogonIS
 {
     public partial class MainWindow : Form
     {
+        private VideoCapture capture;
+        private bool captureInProgress;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,5 +40,52 @@ namespace PhotogonIS
             CvInvoke.WaitKey(0);
             CvInvoke.DestroyWindow("Test Window");
         }
+
+        private void takePicture()
+        {
+            if (capture == null)
+            {
+                try
+                {
+                    capture = new VideoCapture();
+                    capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps, 60);
+                    capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, imageBox1.Height);
+                    capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, imageBox1.Width);
+                }
+                catch (NullReferenceException excpt)
+                {
+                    MessageBox.Show(excpt.Message);
+                }
+            }
+            if(capture != null)
+            {
+                if (captureInProgress)
+                {
+                    takePictureButton.Text = "Resume";
+                    Application.Idle -= ProcessFrame;
+                }
+                else
+                {
+                    takePictureButton.Text = "Stop";
+                    Application.Idle += ProcessFrame;
+                }
+                captureInProgress = !captureInProgress;
+            }
+        }
+
+        private void ProcessFrame(object sender, EventArgs arg)
+        {
+
+            Mat img = capture.QueryFrame();
+            imageBox1.Image = img;
+        }
+
+
+        private void takePictureButton_Click(object sender, EventArgs e)
+        {
+            takePicture();
+        }
+
+ 
     }
 }

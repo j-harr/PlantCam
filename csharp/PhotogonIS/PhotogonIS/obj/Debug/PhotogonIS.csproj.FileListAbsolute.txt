@@ -3,7 +3,6 @@ C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\PhotogonIS.exe
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\PhotogonIS.pdb
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\Emgu.CV.World.dll
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\Emgu.CV.World.xml
-C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csprojResolveAssemblyReference.cache
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.Properties.Resources.resources
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csproj.GenerateResource.Cache
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csproj.CoreCompileInputs.cache
@@ -37,3 +36,5 @@ C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\tr\ZedGraph.resou
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\zh-cn\ZedGraph.resources.dll
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\zh-tw\ZedGraph.resources.dll
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.MainWindow.resources
+C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csprojAssemblyReference.cache
+C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csproj.CopyComplete
