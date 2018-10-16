@@ -135,7 +135,7 @@ void* videoStream::sendVideo(void *ptr){
     isVideoStreaming = true;
     int socket = *(int *)ptr;
 
-    cv::Mat img, imgGray;
+    cv::Mat img;
     img = cv::Mat::zeros(height, width, CV_8UC3);
 
     if(!img.isContinuous()){
@@ -153,7 +153,7 @@ void* videoStream::sendVideo(void *ptr){
 
     std::cout << "Image size: " << imgSize << std::endl;
 
-    while(halt == false){
+    //while(halt == false){
         cap >> img;
         try{
             if((bytes = send(socket, img.data, imgSize, 0)) < 0){
@@ -164,7 +164,7 @@ void* videoStream::sendVideo(void *ptr){
             std::cout << "Caught exception" << std::endl;
             break;
         }
-    }
+    //}
     std::cout << "Stopping stream" << std::endl;
     isVideoStreaming = false;
 }
