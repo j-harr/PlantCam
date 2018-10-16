@@ -153,18 +153,18 @@ void* videoStream::sendVideo(void *ptr){
 
     std::cout << "Image size: " << imgSize << std::endl;
 
-    //while(halt == false){
+    while(halt == false){
         cap >> img;
         try{
             if((bytes = send(socket, img.data, imgSize, 0)) < 0){
                 std::cerr << "bytes = " << bytes << std::endl;
-                //break;
+                break;
             }
         } catch (...){
             std::cout << "Caught exception" << std::endl;
-            //break;
+            break;
         }
-    //}
+    }
     std::cout << "Stopping stream" << std::endl;
     isVideoStreaming = false;
 }
