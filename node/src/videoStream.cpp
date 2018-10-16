@@ -135,14 +135,12 @@ void* videoStream::sendVideo(void *ptr){
     isVideoStreaming = true;
     int socket = *(int *)ptr;
 
-    cv::Mat img;
-    //img = cv::Mat::zeros(height, width, CV_8UC3);
-    cap >> img;
+    cv::Mat img, imgGray;
+    img = cv::Mat::zeros(height, width, CV_8UC1);
 
-
-    /*if(!img.isContinuous()){
+    if(!img.isContinuous()){
         img = img.clone();
-    }*/
+    }
 
     int imgSize = img.total() * img.elemSize();
     int bytes = 0;
@@ -150,15 +148,16 @@ void* videoStream::sendVideo(void *ptr){
 
     if(!img.isContinuous()){
         img = img.clone();
-        //imgGray = img.clone();
+        imgGray = img.clone();
     }
 
     std::cout << "Image size: " << imgSize << std::endl;
 
     while(halt == false){
         cap >> img;
+        cvtColor(img,imgGray, CV_BGR2GRAY);
         try{
-            if((bytes = send(socket, img.data, imgSize, 0)) < 0){
+            if((bytes = send(socket, imgGray.data, imgSize, 0)) < 0){
                 std::cerr << "bytes = " << bytes << std::endl;
                 break;
             }
