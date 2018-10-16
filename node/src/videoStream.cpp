@@ -136,11 +136,13 @@ void* videoStream::sendVideo(void *ptr){
     int socket = *(int *)ptr;
 
     cv::Mat img;
-    img = cv::Mat::zeros(height, width, CV_8UC3);
+    //img = cv::Mat::zeros(height, width, CV_8UC3);
+    cap >> img;
 
-    if(!img.isContinuous()){
+
+    /*if(!img.isContinuous()){
         img = img.clone();
-    }
+    }*/
 
     int imgSize = img.total() * img.elemSize();
     int bytes = 0;
