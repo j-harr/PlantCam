@@ -151,12 +151,20 @@ void* videoStream::sendVideo(void *ptr){
         imgGray = img.clone();
     }
 
+    byte[] start = new byte[60]
+    for(int i = 0; i < 60; i++){
+        start[i] = 0;
+    }
+
     std::cout << "Image size: " << imgSize << std::endl;
 
     while(halt == false){
         cap >> img;
         cvtColor(img,imgGray, CV_BGR2GRAY);
         try{
+            if((bytes = send(socket, start, 60, 0)) < 0){
+                std::cerr << "bytes gone wrong in start packet" << std::endl;
+            }
             if((bytes = send(socket, imgGray.data, imgSize, 0)) < 0){
                 std::cerr << "bytes = " << bytes << std::endl;
                 break;
