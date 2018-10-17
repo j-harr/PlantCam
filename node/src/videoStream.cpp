@@ -136,7 +136,8 @@ void* videoStream::sendVideo(void *ptr){
     int socket = *(int *)ptr;
 
     cv::Mat img, imgGray;
-    img = cv::Mat::zeros(height, width, CV_8UC1);
+    //img = cv::Mat::zeros(height, width, CV_8UC1);
+    img = cv::Mat::zeros(height,width, CV_8UC3);
 
     if(!img.isContinuous()){
         img = img.clone();
@@ -148,7 +149,7 @@ void* videoStream::sendVideo(void *ptr){
 
     if(!img.isContinuous()){
         img = img.clone();
-        imgGray = img.clone();
+        //imgGray = img.clone();
     }
 
     char stPack[60];
@@ -161,12 +162,12 @@ void* videoStream::sendVideo(void *ptr){
 
     while(halt == false){
         cap >> img;
-        cvtColor(img,imgGray, CV_BGR2GRAY);
+        //cvtColor(img,imgGray, CV_BGR2GRAY);
         try{
             if((bytes = send(socket, stPack, 60, 0)) < 0){
                 std::cerr << "bytes gone wrong in start packet" << std::endl;
             }
-            if((bytes = send(socket, imgGray.data, imgSize, 0)) < 0){
+            if((bytes = send(socket, img.data, imgSize, 0)) < 0){
                 std::cerr << "bytes = " << bytes << std::endl;
                 break;
             }
