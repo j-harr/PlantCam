@@ -151,7 +151,8 @@ void* videoStream::sendVideo(void *ptr){
         imgGray = img.clone();
     }
 
-    char[] stPack = new byte[60]
+    char stPack[60];
+
     for(int i = 0; i < 60; i++){
         stPack[i] = 0;
     }
