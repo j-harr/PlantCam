@@ -36,5 +36,5 @@ C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\tr\ZedGraph.resou
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\zh-cn\ZedGraph.resources.dll
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\bin\Debug\zh-tw\ZedGraph.resources.dll
 C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.MainWindow.resources
-C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csprojAssemblyReference.cache
-C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csproj.CopyComplete
+C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.csprojResolveAssemblyReference.cache
+C:\Users\jrhmt\PlantCam\csharp\PhotogonIS\PhotogonIS\obj\Debug\PhotogonIS.streamHub.resources
